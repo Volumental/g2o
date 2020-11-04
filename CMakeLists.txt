@@ -87,7 +87,7 @@ ${g2o_SOURCE_DIR}
 ${G2O_EIGEN3_INCLUDE})
 
 # Include the subdirectories
-ADD_LIBRARY(g2o SHARED ${G2O_LIB_TYPE}
+ADD_LIBRARY(g2o STATIC ${G2O_LIB_TYPE}
   #types
   g2o/types/types_sba.h
   g2o/types/types_six_dof_expmap.h
