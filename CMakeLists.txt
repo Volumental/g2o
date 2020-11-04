@@ -213,3 +213,14 @@ ADD_LIBRARY(g2o SHARED ${G2O_LIB_TYPE}
   g2o/stuff/property.cpp
   g2o/stuff/property.h
 )
+
+install(TARGETS g2o
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+
+install(DIRECTORY g2o/
+  DESTINATION include/g2o
+  FILES_MATCHING PATTERN "*.h"
+)
