@@ -224,3 +224,7 @@ install(DIRECTORY g2o/
   DESTINATION include/g2o
   FILES_MATCHING PATTERN "*.h"
 )
+
+install(FILES ${g2o_SOURCE_DIR}/config.h 
+  DESTINATION ${INCLUDES_DESTINATION}/g2o
+)
