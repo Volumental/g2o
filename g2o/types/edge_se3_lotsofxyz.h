@@ -1,7 +1,7 @@
 #ifndef G2O_SE3_LOTSOF_XYZ
 #define G2O_SE3_LOTSOF_XYZ
 
-#include "g2o/config.h"
+#include "config.h"
 #include "g2o_types_slam3d_api.h"
 #include "g2o/core/base_multi_edge.h"
 #include "vertex_se3.h"

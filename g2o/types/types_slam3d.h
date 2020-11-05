@@ -17,7 +17,7 @@
 #ifndef G2O_TYPES_SLAM3D_
 #define G2O_TYPES_SLAM3D_
 
-#include "g2o/config.h"
+#include "config.h"
 #include "g2o/core/base_vertex.h"
 #include "g2o/core/base_binary_edge.h"
 #include "g2o/core/hyper_graph_action.h"
