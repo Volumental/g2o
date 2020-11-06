@@ -76,7 +76,7 @@ ENDIF(EIGEN3_FOUND)
 
 # Generate config.h
 SET(G2O_CXX_COMPILER "${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER}")
-configure_file(config.h.in ${g2o_SOURCE_DIR}/config.h)
+configure_file(config.h.in "${PROJECT_BINARY_DIR}/g2o/config.h")
 
 # Set up the top-level include directories
 INCLUDE_DIRECTORIES(
@@ -84,6 +84,7 @@ ${g2o_SOURCE_DIR}/core
 ${g2o_SOURCE_DIR}/types
 ${g2o_SOURCE_DIR}/stuff
 ${g2o_SOURCE_DIR}
+${PROJECT_BINARY_DIR}
 ${G2O_EIGEN3_INCLUDE})
 
 # Include the subdirectories
@@ -222,5 +223,11 @@ install(TARGETS g2o
 
 install(DIRECTORY g2o/
   DESTINATION include/g2o
-  FILES_MATCHING PATTERN "*.h"
+  FILES_MATCHING 
+  PATTERN "*.h"
+  PATTERN "*.hpp"
+)
+
+install(FILES ${PROJECT_BINARY_DIR}/g2o/config.h 
+  DESTINATION include/g2o
 )
