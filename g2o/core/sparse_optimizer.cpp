@@ -41,7 +41,9 @@
 #include "../stuff/timeutil.h"
 #include "../stuff/macros.h"
 #include "../stuff/misc.h"
-#include "../../config.h"
+#include "g2o/config.h"
+
+#include "g2o/core/ownership.h"
 
 namespace g2o{
   using namespace std;
@@ -54,7 +56,8 @@ namespace g2o{
   }
 
   SparseOptimizer::~SparseOptimizer(){
-    delete _algorithm;
+    // delete _algorithm;
+    release(_algorithm);
     G2OBatchStatistics::setGlobalStats(0);
   }
 

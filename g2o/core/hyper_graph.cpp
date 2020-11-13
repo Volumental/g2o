@@ -26,6 +26,8 @@
 
 #include "hyper_graph.h"
 
+#include "ownership.h"
+
 #include <assert.h>
 #include <queue>
 
@@ -122,7 +124,9 @@ namespace g2o {
       }
     }
     _vertices.erase(it);
-    delete v;
+    
+    // delete v;
+    release(v);
     return true;
   }
 
@@ -140,7 +144,8 @@ namespace g2o {
       v->edges().erase(it);
     }
 
-    delete e;
+    // delete e;
+    release(e);
     return true;
   }
 
@@ -150,10 +155,13 @@ namespace g2o {
 
   void HyperGraph::clear()
   {
+#if G2O_DELETE_IMPLICITLY_OWNED_OBJECTS
     for (VertexIDMap::iterator it=_vertices.begin(); it!=_vertices.end(); ++it)
       delete (it->second);
     for (EdgeSet::iterator it=_edges.begin(); it!=_edges.end(); ++it)
       delete (*it);
+#endif
+
     _vertices.clear();
     _edges.clear();
   }
