@@ -13,7 +13,15 @@ ENDIF()
 
 MESSAGE(STATUS "BUILD TYPE:" ${CMAKE_BUILD_TYPE})
 
-SET (G2O_LIB_TYPE )
+# Allow the developer to select if Dynamic or Static libraries are built
+option (BUILD_SHARED_LIBS "Build Shared Libraries (preferred and required for the g2o plugin system)" OFF)
+set (G2O_LIB_TYPE STATIC)
+if (BUILD_SHARED_LIBS)
+  set (G2O_LIB_TYPE SHARED)
+endif()
+
+set(G2O_SHARED_LIBS ${BUILD_SHARED_LIBS})
+option(G2O_NO_IMPLICIT_OWNERSHIP_OF_OBJECTS "Disables memory management in the graph types, this requires the callers to manager the memory of edges and nodes" ON)
 
 # There seems to be an issue with MSVC8
 # see http://eigen.tuxfamily.org/bz/show_bug.cgi?id=83
@@ -88,7 +96,7 @@ ${PROJECT_BINARY_DIR}
 ${G2O_EIGEN3_INCLUDE})
 
 # Include the subdirectories
-ADD_LIBRARY(g2o STATIC ${G2O_LIB_TYPE}
+ADD_LIBRARY(g2o ${G2O_LIB_TYPE}
   #types
   g2o/types/types_sba.h
   g2o/types/types_six_dof_expmap.h
@@ -99,42 +107,12 @@ ADD_LIBRARY(g2o STATIC ${G2O_LIB_TYPE}
   g2o/types/se3quat.h
   g2o/types/dquat2mat.cpp
   g2o/types/dquat2mat.h
-
-  #g2o/types/isometry3d_mappings.h
-  #g2o/types/isometry3d_mappings.cpp
-  #g2o/types/isometry3d_gradients.cpp
-  #g2o/types/isometry3d_gradients.h
-  #g2o/types/vertex_se3.cpp
-  #g2o/types/vertex_se3.h
-  #g2o/types/parameter_se3_offset.cpp
-  #g2o/types/parameter_se3_offset.h
-  #g2o/types/edge_se3.cpp
-  #g2o/types/edge_se3.h
-  #g2o/types/edge_se3_offset.cpp
-  #g2o/types/edge_se3_offset.h
   g2o/types/vertex_pointxyz.cpp
   g2o/types/vertex_pointxyz.h
-  #g2o/types/parameter_camera.cpp
-  #g2o/types/parameter_camera.h
-  #g2o/types/parameter_stereo_camera.cpp
-  #g2o/types/parameter_stereo_camera.h
-  #g2o/types/edge_se3_pointxyz.cpp
-  #g2o/types/edge_se3_pointxyz.h
-  #g2o/types/edge_se3_pointxyz_disparity.cpp
-  #g2o/types/edge_se3_pointxyz_disparity.h
-  #g2o/types/edge_se3_pointxyz_depth.cpp
-  #g2o/types/edge_se3_pointxyz_depth.h
-  #g2o/types/edge_se3_prior.cpp
-  #g2o/types/edge_se3_prior.h
-  #g2o/types/edge_se3_lotsofxyz.cpp
-  #g2o/types/edge_se3_lotsofxyz.h
-  #g2o/types/se3quat.h
   g2o/types/edge_pointxyz.cpp
   g2o/types/edge_pointxyz.h
   g2o/types/se3_ops.h
   g2o/types/se3_ops.hpp
-  #g2o/types/types_slam3d.cpp
-  #g2o/types/types_slam3d.h
   #core
   g2o/core/base_edge.h
   g2o/core/base_binary_edge.h
@@ -201,6 +179,7 @@ ADD_LIBRARY(g2o STATIC ${G2O_LIB_TYPE}
   g2o/core/robust_kernel_factory.h
   g2o/core/robust_kernel_impl.cpp
   g2o/core/robust_kernel_impl.h
+  g2o/core/ownership.h
   #stuff
   g2o/stuff/string_tools.h
   g2o/stuff/color_macros.h
