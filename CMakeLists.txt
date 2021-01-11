@@ -113,6 +113,7 @@ ADD_LIBRARY(g2o ${G2O_LIB_TYPE}
   g2o/types/edge_pointxyz.h
   g2o/types/se3_ops.h
   g2o/types/se3_ops.hpp
+  g2o/types/plane3d.h
   #core
   g2o/core/base_edge.h
   g2o/core/base_binary_edge.h
