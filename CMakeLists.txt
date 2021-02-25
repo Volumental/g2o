@@ -21,7 +21,7 @@ if (BUILD_SHARED_LIBS)
 endif()
 
 set(G2O_SHARED_LIBS ${BUILD_SHARED_LIBS})
-option(G2O_NO_IMPLICIT_OWNERSHIP_OF_OBJECTS "Disables memory management in the graph types, this requires the callers to manager the memory of edges and nodes" ON)
+option(G2O_NO_IMPLICIT_OWNERSHIP_OF_OBJECTS "Disables memory management in the graph types, this requires the callers to manager the memory of edges and nodes" OFF)
 
 # There seems to be an issue with MSVC8
 # see http://eigen.tuxfamily.org/bz/show_bug.cgi?id=83
