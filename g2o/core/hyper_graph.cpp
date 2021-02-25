@@ -155,12 +155,12 @@ namespace g2o {
 
   void HyperGraph::clear()
   {
-#if G2O_DELETE_IMPLICITLY_OWNED_OBJECTS
+// #if G2O_DELETE_IMPLICITLY_OWNED_OBJECTS
     for (VertexIDMap::iterator it=_vertices.begin(); it!=_vertices.end(); ++it)
       delete (it->second);
     for (EdgeSet::iterator it=_edges.begin(); it!=_edges.end(); ++it)
       delete (*it);
-#endif
+// #endif
 
     _vertices.clear();
     _edges.clear();

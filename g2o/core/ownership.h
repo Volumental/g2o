@@ -9,9 +9,9 @@ namespace g2o
     void release(T* obj)
     {
         (void)obj;
-#if G2O_DELETE_IMPLICITLY_OWNED_OBJECTS
+// #if G2O_DELETE_IMPLICITLY_OWNED_OBJECTS
         delete obj;
-#endif
+// #endif
     }
 }
 
