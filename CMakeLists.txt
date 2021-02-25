@@ -154,7 +154,7 @@ set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL)
 
 # If OpenGL was found, use the import target if available. If not, use old-style includes
-set(G2O_USE_OPENGL ON CACHE BOOL "Build g2o with OpenGL support for visualization")
+set(G2O_USE_OPENGL OFF CACHE BOOL "Build g2o with OpenGL support for visualization")
 if (OPENGL_FOUND AND G2O_USE_OPENGL)
   if (TARGET OpenGL::GL)
     set(G2O_OPENGL_TARGET "OpenGL::GL;OpenGL::GLU")
