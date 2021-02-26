@@ -302,11 +302,8 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   message(STATUS "Compiling with Clang")
 
   # activate all warnings
-  #set(g2o_C_FLAGS "${g2o_C_FLAGS} -Weverything")
-  #set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Weverything")
-  set(g2o_C_FLAGS "${g2o_C_FLAGS} -Wall")
-  set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall")
-  #set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall -stdlib=libc++")
+  set(g2o_C_FLAGS "${g2o_C_FLAGS} -Wall -O3 -march=native")
+  set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall -O3 -march=native")
 endif()
 
 if(MSVC)
