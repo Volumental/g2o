@@ -104,6 +104,11 @@ if(ANDROID)
   message(STATUS "Cross compiling for Android")
 endif()
 
+if(IOS)
+  add_definitions(-DIOS)
+  message(STATUS "Cross compiling for iOS")
+endif()
+
 # For building the CHOLMOD based solvers
 option(G2O_USE_CHOLMOD "Build g2o with CHOLMOD support" ON)
 find_package(Cholmod)
@@ -302,8 +307,12 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   message(STATUS "Compiling with Clang")
 
   # activate all warnings
-  set(g2o_C_FLAGS "${g2o_C_FLAGS} -Wall -O3 -fPIC -march=native")
-  set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall -O3 -fPIC -march=native")
+  set(g2o_C_FLAGS "${g2o_C_FLAGS} -Wall -O3 -fPIC")
+  set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall -O3 -fPIC")
+  if(NOT IOS)
+    set(g2o_C_FLAGS "${g2o_C_FLAGS} -march=native")
+    set(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -march=native")
+  endif()
 endif()
 
 if(MSVC)
