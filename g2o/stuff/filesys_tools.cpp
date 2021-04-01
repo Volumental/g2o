@@ -133,8 +133,8 @@ std::vector<std::string> getFilesByPattern(const char* pattern)
     } while (FindNextFile(hFind, &FData));
     FindClose(hFind);
   }
-  
-#elif (defined (UNIX) || defined (CYGWIN)) && !defined(ANDROID)
+
+#elif (defined (UNIX) || defined (CYGWIN)) && !defined(ANDROID) && !defined(IOS)
 
   wordexp_t p;
   wordexp(pattern, &p, 0);
@@ -153,7 +153,7 @@ std::vector<std::string> getFilesByPattern(const char* pattern)
   result.reserve(p.we_wordc);
   for (size_t i = 0; i < p.we_wordc; ++i)
     result.push_back(p.we_wordv[i]);
-  
+
   wordfree(&p);
 
 #endif

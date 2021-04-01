@@ -123,7 +123,7 @@ int strPrintf(std::string& str, const char* fmt, ...)
 
 std::string strExpandFilename(const std::string& filename)
 {
-#if (defined (UNIX) || defined(CYGWIN)) && !defined(ANDROID)
+#if (defined (UNIX) || defined(CYGWIN)) && !defined(ANDROID) && !defined(IOS)
   string result = filename;
   wordexp_t p;
 
